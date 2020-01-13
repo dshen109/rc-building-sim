@@ -25,6 +25,7 @@ __status__ = "production"
 
 
 
+
 class Location(object):
     """Set the Location of the Simulation with an Energy Plus Weather File"""
 
