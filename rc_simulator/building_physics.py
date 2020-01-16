@@ -121,6 +121,7 @@ class Building(object):
                  cooling_supply_system=supply_system.HeatPumpAir,
                  heating_emission_system=emission_system.NewRadiators,
                  cooling_emission_system=emission_system.AirConditioning,
+                 dhw_supply_temperature=60,
                  ):
 
         # Building Dimensions
@@ -174,6 +175,7 @@ class Building(object):
         # Thermal set points
         self.t_set_heating = t_set_heating
         self.t_set_cooling = t_set_cooling
+        self.dhw_supply_temperature = dhw_supply_temperature
 
         # Thermal Properties
         self.has_heating_demand = False  # Boolean for if heating is required
@@ -182,6 +184,8 @@ class Building(object):
             self.floor_area  # max cooling load (W/m2)
         self.max_heating_energy = max_heating_energy_per_floor_area * \
             self.floor_area  # max heating load (W/m2)
+        self.has_dhw_demand = False  # Boolean for if dhw production is required
+
 
         # Building System Properties
         self.heating_supply_system = heating_supply_system
@@ -246,7 +250,7 @@ class Building(object):
         else:
             self.lighting_demand = 0
 
-    def solve_building_energy(self, internal_gains, solar_gains, t_out, t_m_prev):
+    def solve_building_energy(self, internal_gains, solar_gains, t_out, t_m_prev, dhw_demand):
         """
         Calculates the heating and cooling consumption of a building for a set timestep
 
@@ -277,6 +281,28 @@ class Building(object):
 
         # check demand, and change state of self.has_heating_demand, and self._has_cooling_demand
         self.has_demand(internal_gains, solar_gains, t_out, t_m_prev)
+
+        if dhw_demand > 0:
+            self.has_dhw_demand = True
+            self.dhw_demand = dhw_demand
+
+            supply_director = supply_system.SupplyDirector()
+            supply_director.set_builder(self.heating_supply_system(load=self.dhw_demand,
+                                                                   t_out=t_out,
+                                                                   heating_supply_temperature=self.dhw_supply_temperature,
+                                                                   cooling_supply_temperature=self.cooling_supply_temperature,
+                                                                   has_heating_demand=self.has_dhw_demand,
+                                                                   has_cooling_demand = False))
+
+            supplyOut = supply_director.calc_system()
+            self.dhw_sys_electricity = supplyOut.electricity_in
+            self.dhw_sys_fossils = supplyOut.fossils_in
+            self.electricity_out_dhw = supplyOut.electricity_out  # in case of CHP, hier noch das Problem, dass es im Heizungsfall unten überschrieben wird.
+
+        else:
+            self.dhw_sys_electricity = 0
+            self.dhw_sys_fossils = 0
+            self.electricity_out_dhw = 0
 
         if not self.has_heating_demand and not self.has_cooling_demand:
 
@@ -358,9 +384,11 @@ class Building(object):
             self.cop = supplyOut.cop
 
         self.sys_total_energy = self.heating_sys_electricity + self.heating_sys_fossils + \
-            self.cooling_sys_electricity + self.cooling_sys_fossils
+            self.cooling_sys_electricity + self.cooling_sys_fossils + self.dhw_sys_electricity + self.dhw_sys_fossils
         self.heating_energy = self.heating_sys_electricity + self.heating_sys_fossils
         self.cooling_energy = self.cooling_sys_electricity + self.cooling_sys_fossils
+        self.dhw_energy = self.dhw_sys_electricity + self.dhw_sys_fossils
+        self.electricity_out = self.electricity_out + self.electricity_out_dhw
 
     # TODO: rename. this is expected to return a boolean. instead, it changes state??? you don't want to change state...
     # why not just return has_heating_demand and has_cooling_demand?? then call the function "check_demand"
@@ -391,6 +419,7 @@ class Building(object):
         else:
             self.has_heating_demand = False
             self.has_cooling_demand = False
+
 
     def calc_temperatures_crank_nicolson(self, energy_demand, internal_gains, solar_gains, t_out, t_m_prev):
         """
