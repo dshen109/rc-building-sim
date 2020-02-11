@@ -303,6 +303,7 @@ class Building(object):
             self.dhw_sys_electricity = 0
             self.dhw_sys_fossils = 0
             self.electricity_out_dhw = 0
+            self.dhw_demand = 0
 
         if not self.has_heating_demand and not self.has_cooling_demand:
 
