@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.abspath(
 
 import unittest
 import numpy as np
-from building_physics import Building  # Importing Building Class
+from building_physics import Zone  # Importing Zone Class
 import supply_system
 import emission_system
 
@@ -29,8 +29,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -55,9 +55,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 22.33)
         self.assertEqual(Office.energy_demand, 0)
@@ -80,8 +80,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -106,9 +106,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.energy_demand, 2), -264.75)
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 264.75)
@@ -134,8 +134,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -160,9 +160,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 20.46)
         self.assertTrue(Office.has_heating_demand)
@@ -186,8 +186,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -212,9 +212,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 26.49)
         self.assertTrue(Office.has_cooling_demand)
@@ -239,8 +239,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -265,9 +265,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 19.39)
         self.assertTrue(Office.has_heating_demand)
@@ -292,8 +292,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -318,9 +318,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 22.33)
         self.assertEqual(Office.energy_demand, 0)
@@ -346,8 +346,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -372,9 +372,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 22.44)
         self.assertEqual(Office.energy_demand, 0)
@@ -397,8 +397,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -423,9 +423,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.energy_demand, 2), -296.65)
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 296.65)
@@ -451,8 +451,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -477,9 +477,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 20.46)
         self.assertTrue(Office.has_heating_demand)
@@ -503,8 +503,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -529,9 +529,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 26.48)
         self.assertTrue(Office.has_cooling_demand)
@@ -556,8 +556,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -582,9 +582,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 19.51)
         self.assertTrue(Office.has_heating_demand)
@@ -609,8 +609,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -635,9 +635,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 22.43)
         self.assertEqual(Office.energy_demand, 0)
@@ -664,8 +664,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -690,9 +690,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.energy_demand, 2), -264.75)
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 55.87)
@@ -719,8 +719,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -745,9 +745,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.energy_demand, 2), -411.6)
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 107.44)
@@ -774,8 +774,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -800,9 +800,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.energy_demand, 2), -411.6)
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 52.12)
@@ -829,8 +829,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -855,9 +855,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 20.46)
         self.assertTrue(Office.has_heating_demand)
@@ -883,8 +883,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -909,9 +909,9 @@ class TestBuildingSim(unittest.TestCase):
                           cooling_emission_system=emission_system.AirConditioning,
                           )
 
-        Office.solve_building_energy(
+        Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
-        Office.solve_building_lighting(ill, occupancy)
+        Office.solve_lighting(ill, occupancy)
 
         self.assertEqual(round(Office.t_m, 2), 20.46)
         self.assertTrue(Office.has_heating_demand)

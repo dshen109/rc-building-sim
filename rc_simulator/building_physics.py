@@ -10,10 +10,10 @@ HOW TO USE
 
 ::
 
-    from buildingPhysics import Building  #Importing Building Class
+    from buildingPhysics import Building  #Importing Zone Class
     office = Building()  #Set an instance of the class
-    office.solve_building_energy(internal_gains, solar_gains, t_out, t_m_prev) #Solve for Heating
-    office.solve_building_lighting(illumination, occupancy) #Solve for Lighting
+    office.solve_energy(internal_gains, solar_gains, t_out, t_m_prev) #Solve for Heating
+    office.solve_lighting(illumination, occupancy) #Solve for Lighting
 
 
 VARIABLE DEFINITION
@@ -94,8 +94,8 @@ __status__ = "production"
 
 
 
-class Building(object):
-    '''Sets the parameters of the building. '''
+class Zone(object):
+    '''Sets the parameters of the zone. '''
 
     def __init__(self,
                  window_area=4.0,
@@ -123,7 +123,7 @@ class Building(object):
                  cooling_emission_system=emission_system.AirConditioning,
                  ):
 
-        # Building Dimensions
+        # Zone Dimensions
         self.window_area = window_area  # [m2] Window Area
         self.room_depth = room_depth  # [m] Room Depth
         self.room_width = room_width  # [m] Room Width
@@ -140,7 +140,7 @@ class Building(object):
 
         # Calculated Properties
         self.floor_area = room_depth * room_width  # [m2] Floor Area
-        # [m2] Effective Mass Area assuming a medium weight building #12.3.1.2
+        # [m2] Effective Mass Area assuming a medium weight zone #12.3.1.2
         self.mass_area = self.floor_area * 2.5
         self.room_vol = room_width * room_depth * \
             room_height  # [m3] Room Volume
@@ -150,7 +150,7 @@ class Building(object):
         self.A_t = self.total_internal_area
 
         # Single Capacitance  5 conductance Model Parameters
-        # [kWh/K] Room Capacitance. Default based on ISO standard 12.3.1.2 for medium heavy buildings
+        # [kWh/K] Room Capacitance. Default based on ISO standard 12.3.1.2 for medium heavy zones
         self.c_m = thermal_capacitance_per_floor_area * self.floor_area
         # Conductance of opaque surfaces to exterior [W/K]
         self.h_tr_em = u_walls * (external_envelope_area - window_area)
@@ -166,9 +166,9 @@ class Building(object):
         self.h_ve_adj = 1200 * b_ek * self.room_vol * \
             (ach_tot / 3600)  # Conductance through ventilation [W/M]
         # transmittance from the internal air to the thermal mass of the
-        # building
+        # zone
         self.h_tr_ms = 9.1 * self.mass_area
-        # Conductance from the conditioned air to interior building surface
+        # Conductance from the conditioned air to interior zone surface
         self.h_tr_is = self.total_internal_area * 3.45
 
         # Thermal set points
@@ -183,7 +183,7 @@ class Building(object):
         self.max_heating_energy = max_heating_energy_per_floor_area * \
             self.floor_area  # max heating load (W/m2)
 
-        # Building System Properties
+        # Zone System Properties
         self.heating_supply_system = heating_supply_system
         self.cooling_supply_system = cooling_supply_system
         self.heating_emission_system = heating_emission_system
@@ -222,7 +222,7 @@ class Building(object):
         """
         return 0.3 * self.t_air + 0.7 * self.t_s
     
-    def solve_building_lighting(self, illuminance, occupancy):
+    def solve_lighting(self, illuminance, occupancy):
         """
         Calculates the lighting demand for a set timestep
 
@@ -246,7 +246,7 @@ class Building(object):
         else:
             self.lighting_demand = 0
 
-    def solve_building_energy(self, internal_gains, solar_gains, t_out, t_m_prev):
+    def solve_energy(self, internal_gains, solar_gains, t_out, t_m_prev):
         """
         Calculates the heating and cooling consumption of a building for a set timestep
 
@@ -368,7 +368,7 @@ class Building(object):
     def has_demand(self, internal_gains, solar_gains, t_out, t_m_prev):
         """
         Determines whether the building requires heating or cooling
-        Used in: solve_building_energy()
+        Used in: solve_energy()
 
         # step 1 in section C.4.2 in [C.3 ISO 13790]
         """
@@ -395,7 +395,7 @@ class Building(object):
     def calc_temperatures_crank_nicolson(self, energy_demand, internal_gains, solar_gains, t_out, t_m_prev):
         """
         Determines node temperatures and computes derivation to determine the new node temperatures
-        Used in: has_demand(), solve_building_energy(), calc_energy_demand()
+        Used in: has_demand(), solve_energy(), calc_energy_demand()
         # section C.3 in [C.3 ISO 13790]
         """
 
@@ -419,7 +419,7 @@ class Building(object):
     def calc_energy_demand(self, internal_gains, solar_gains, t_out, t_m_prev):
         """
         Calculates the energy demand of the space if heating/cooling is active
-        Used in: solve_building_energy()
+        Used in: solve_energy()
         # Step 1 - Step 4 in Section C.4.2 in [C.3 ISO 13790]
         """
 

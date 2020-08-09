@@ -3,6 +3,15 @@ Main file to calculate the building loads
 EN-13970
 """
 
+__author__ = "Prageeth Jayathissa"
+__copyright__ = "Copyright 2016, Architecture and Building Systems - ETH Zurich"
+__credits__ = [""]
+__license__ = "MIT"
+__version__ = "0.1"
+__maintainer__ = "Prageeth Jayathissa"
+__email__ = "jayathissa@arch.ethz.ch"
+__status__ = "Production"
+
 
 import sys
 import os
@@ -12,16 +21,8 @@ sys.path.insert(0, os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..')))
 
 import numpy as np
-from building_physics import Building  # Importing Building Class
+from building_physics import Zone  # Importing Zone Class
 
-__author__ = "Prageeth Jayathissa"
-__copyright__ = "Copyright 2016, Architecture and Building Systems - ETH Zurich"
-__credits__ = [""]
-__license__ = "MIT"
-__version__ = "0.1"
-__maintainer__ = "Prageeth Jayathissa"
-__email__ = "jayathissa@arch.ethz.ch"
-__status__ = "Production"
 
 
 # Example Inpiuts
@@ -34,15 +35,15 @@ ill = 44000  # Illuminance after transmitting through the window [Lumens]
 occupancy = 0.1  # Occupancy for the timestep [people/hour/square_meter]
 
 
-# Initialise an instance of the building. Empty brackets take on the
-# default parameters. See buildingPhysics.py to see the default values
-Office = Building()
+# Initialise an instance of the Zone. Empty brackets take on the
+# default parameters. See ZonePhysics.py to see the default values
+Office = Zone()
 
-# Solve for building energy
-Office.solve_building_energy(internal_gains, solar_gains, t_air, t_m_prev)
+# Solve for Zone energy
+Office.solve_energy(internal_gains, solar_gains, t_air, t_m_prev)
 
-# Solve for building lighting
-Office.solve_building_lighting(ill, occupancy)
+# Solve for Zone lighting
+Office.solve_lighting(ill, occupancy)
 
 
 
@@ -56,7 +57,7 @@ print(Office.energy_demand)  # Print heating/cooling loads
 Office.theta_int_h_set = 20.0
 
 # Solve again for the new set point temperature
-Office.solve_building_energy(internal_gains, solar_gains, t_air, t_m_prev)
+Office.solve_energy(internal_gains, solar_gains, t_air, t_m_prev)
 
 
 
