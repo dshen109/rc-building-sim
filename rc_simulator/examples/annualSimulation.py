@@ -76,6 +76,10 @@ Office = Zone(window_area=4.0,
 SouthWindow = Window(azimuth_tilt=0, alititude_tilt=90, glass_solar_transmittance=0.7,
                      glass_light_transmittance=0.8, area=4)
 
+# A catch statement to prevent future coding bugs when modifying window area
+if SouthWindow.area != Office.window_area:
+  raise ValueError('Window area defined in radiation file doesnt match area defined in zone')
+
 
 # Define constants for the Zone
 gain_per_person = 100  # W per person
