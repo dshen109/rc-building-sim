@@ -40,10 +40,10 @@ occupancy = 0.1  # Occupancy for the timestep [people/hour/square_meter]
 Office = Zone()
 
 # Solve for Zone energy
-Office.solve_building_energy(internal_gains, solar_gains, t_air, t_m_prev)
+Office.solve_energy(internal_gains, solar_gains, t_air, t_m_prev)
 
 # Solve for Zone lighting
-Office.solve_building_lighting(ill, occupancy)
+Office.solve_lighting(ill, occupancy)
 
 
 
@@ -57,7 +57,7 @@ print(Office.energy_demand)  # Print heating/cooling loads
 Office.theta_int_h_set = 20.0
 
 # Solve again for the new set point temperature
-Office.solve_building_energy(internal_gains, solar_gains, t_air, t_m_prev)
+Office.solve_energy(internal_gains, solar_gains, t_air, t_m_prev)
 
 
 

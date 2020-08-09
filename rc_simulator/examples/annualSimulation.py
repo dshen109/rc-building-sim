@@ -115,10 +115,10 @@ for hour in range(8760):
                                      'dirnorillum_lux'][hour],
                                  horizontal_diffuse_illuminance=Zurich.weather_data['difhorillum_lux'][hour])
 
-    Office.solve_building_energy(internal_gains=internal_gains,
+    Office.solve_energy(internal_gains=internal_gains,
                                  solar_gains=SouthWindow.solar_gains, t_out=t_out, t_m_prev=t_m_prev)
 
-    Office.solve_building_lighting(
+    Office.solve_lighting(
         illuminance=SouthWindow.transmitted_illuminance, occupancy=occupancy)
 
     # Set the previous temperature for the next time step

@@ -10,10 +10,10 @@ HOW TO USE
 
 ::
 
-    from buildingPhysics import Building  #Importing Building Class
+    from buildingPhysics import Building  #Importing Zone Class
     office = Building()  #Set an instance of the class
-    office.solve_building_energy(internal_gains, solar_gains, t_out, t_m_prev) #Solve for Heating
-    office.solve_building_lighting(illumination, occupancy) #Solve for Lighting
+    office.solve_energy(internal_gains, solar_gains, t_out, t_m_prev) #Solve for Heating
+    office.solve_lighting(illumination, occupancy) #Solve for Lighting
 
 
 VARIABLE DEFINITION
@@ -222,7 +222,7 @@ class Zone(object):
         """
         return 0.3 * self.t_air + 0.7 * self.t_s
     
-    def solve_building_lighting(self, illuminance, occupancy):
+    def solve_lighting(self, illuminance, occupancy):
         """
         Calculates the lighting demand for a set timestep
 
@@ -246,7 +246,7 @@ class Zone(object):
         else:
             self.lighting_demand = 0
 
-    def solve_building_energy(self, internal_gains, solar_gains, t_out, t_m_prev):
+    def solve_energy(self, internal_gains, solar_gains, t_out, t_m_prev):
         """
         Calculates the heating and cooling consumption of a building for a set timestep
 
@@ -368,7 +368,7 @@ class Zone(object):
     def has_demand(self, internal_gains, solar_gains, t_out, t_m_prev):
         """
         Determines whether the building requires heating or cooling
-        Used in: solve_building_energy()
+        Used in: solve_energy()
 
         # step 1 in section C.4.2 in [C.3 ISO 13790]
         """
@@ -395,7 +395,7 @@ class Zone(object):
     def calc_temperatures_crank_nicolson(self, energy_demand, internal_gains, solar_gains, t_out, t_m_prev):
         """
         Determines node temperatures and computes derivation to determine the new node temperatures
-        Used in: has_demand(), solve_building_energy(), calc_energy_demand()
+        Used in: has_demand(), solve_energy(), calc_energy_demand()
         # section C.3 in [C.3 ISO 13790]
         """
 
@@ -419,7 +419,7 @@ class Zone(object):
     def calc_energy_demand(self, internal_gains, solar_gains, t_out, t_m_prev):
         """
         Calculates the energy demand of the space if heating/cooling is active
-        Used in: solve_building_energy()
+        Used in: solve_energy()
         # Step 1 - Step 4 in Section C.4.2 in [C.3 ISO 13790]
         """
 

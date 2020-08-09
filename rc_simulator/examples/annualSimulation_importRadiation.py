@@ -98,7 +98,7 @@ for hour in range(8760):
         # Sun is below the horizon (night time)
         solar_gains = 0
 
-    Office.solve_building_energy(
+    Office.solve_energy(
         internal_gains=internal_gains, solar_gains=solar_gains, t_out=t_out, t_m_prev=t_m_prev)
 
     t_m_prev = Office.t_m_next
