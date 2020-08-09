@@ -49,7 +49,7 @@ Zurich = Location(epwfile_path=os.path.join(
 # Initialise an instance of the Zone. Empty spaces take on the default
 # parameters. See ZonePhysics.py to see the default values
 Office = Zone(window_area=4.0,
-                  external_envelope_area=15.0,
+                  walls_area=11.0,
                   room_depth=7.0,
                   room_width=5.0,
                   room_height=3.0,

@@ -1,18 +1,3 @@
-"""
-Main file to calculate the building loads
-EN-13970
-"""
-
-__author__ = "Prageeth Jayathissa"
-__copyright__ = "Copyright 2016, Architecture and Building Systems - ETH Zurich"
-__credits__ = [""]
-__license__ = "MIT"
-__version__ = "0.1"
-__maintainer__ = "Prageeth Jayathissa"
-__email__ = "jayathissa@arch.ethz.ch"
-__status__ = "Production"
-
-
 import sys
 import os
 
@@ -25,7 +10,7 @@ from building_physics import Zone  # Importing Zone Class
 
 
 
-# Example Inpiuts
+# Example Inputs
 t_air = 10
 t_m_prev = 22
 internal_gains = 10  # Internal heat gains, in Watts

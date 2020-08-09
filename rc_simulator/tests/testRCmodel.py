@@ -31,7 +31,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -82,7 +82,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -136,7 +136,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -188,7 +188,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -241,7 +241,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -294,7 +294,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -348,7 +348,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -399,7 +399,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -453,7 +453,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -505,7 +505,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -558,7 +558,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -611,7 +611,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -666,7 +666,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -721,7 +721,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -776,7 +776,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -831,7 +831,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -885,7 +885,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
@@ -940,7 +940,7 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          external_envelope_area=15.19,
+                          walls_area=15.19 - 13.5,
                           room_depth=7,
                           room_width=4.9,
                           room_height=3.1,
