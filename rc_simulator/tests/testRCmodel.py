@@ -1,12 +1,11 @@
 import sys
 import os
+import unittest
 
 # Set root folder one level up, just for this example
 sys.path.insert(0, os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..')))
 
-import unittest
-import numpy as np
 from building_physics import Zone  # Importing Zone Class
 import supply_system
 import emission_system
@@ -31,29 +30,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -64,7 +63,6 @@ class TestBuildingSim(unittest.TestCase):
         self.assertEqual(round(Office.heating_sys_electricity, 2), 0)
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 0)
         self.assertEqual(Office.lighting_demand, 0)
-
 
     def test_CoolingRequired(self):
         t_out = 25
@@ -83,29 +81,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -137,29 +135,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -189,29 +187,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -242,29 +240,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -295,29 +293,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20.0,
-                          t_set_cooling=26.0,
-                          max_cooling_energy_per_floor_area=-12.0,
-                          max_heating_energy_per_floor_area=12.0,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20.0,
+                      t_set_cooling=26.0,
+                      max_cooling_energy_per_floor_area=-12.0,
+                      max_heating_energy_per_floor_area=12.0,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -329,8 +327,7 @@ class TestBuildingSim(unittest.TestCase):
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 0)
         self.assertEqual(round(Office.lighting_demand, 2), 401.31)
 
-
-#     ###############################Tests with infiltration variation####
+    #     ###############################Tests with infiltration variation####
 
     def test_NoHVACNoLight_infl(self):
         t_out = 10
@@ -349,29 +346,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.66,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.66,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -400,29 +397,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.6,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.6,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -454,29 +451,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.6,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.6,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -506,29 +503,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.6,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.6,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -559,29 +556,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.6,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.6,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -612,29 +609,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.6,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20.0,
-                          t_set_cooling=26.0,
-                          max_cooling_energy_per_floor_area=-12.0,
-                          max_heating_energy_per_floor_area=12.0,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.6,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20.0,
+                      t_set_cooling=26.0,
+                      max_cooling_energy_per_floor_area=-12.0,
+                      max_heating_energy_per_floor_area=12.0,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -646,8 +643,7 @@ class TestBuildingSim(unittest.TestCase):
         self.assertEqual(round(Office.heating_sys_electricity, 2), 0)
         self.assertEqual(round(Office.lighting_demand, 2), 401.31)
 
-
-# ############################ System Variations ########################
+    # ############################ System Variations ########################
 
     def test_HeatPumpCoolingRequiredHighCOP(self):
         """Warning! Not validated yet and may have errors"""
@@ -667,29 +663,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.HeatPumpAir,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.HeatPumpAir,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -722,29 +718,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.HeatPumpAir,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.HeatPumpAir,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -777,29 +773,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.DirectHeater,
-                          cooling_supply_system=supply_system.HeatPumpWater,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.DirectHeater,
+                      cooling_supply_system=supply_system.HeatPumpWater,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -832,29 +828,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.6,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.HeatPumpAir,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.6,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.HeatPumpAir,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -886,29 +882,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.6,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.HeatPumpWater,
-                          cooling_supply_system=supply_system.DirectCooler,
-                          heating_emission_system=emission_system.AirConditioning,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.6,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.HeatPumpWater,
+                      cooling_supply_system=supply_system.DirectCooler,
+                      heating_emission_system=emission_system.AirConditioning,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -921,7 +917,6 @@ class TestBuildingSim(unittest.TestCase):
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 0)
         self.assertEqual(round(Office.cop, 2), 4.62)
         self.assertEqual(Office.lighting_demand, 0)
-
 
     def test_WaterHeatPump_mixedEmissions_infl(self):
 
@@ -941,29 +936,29 @@ class TestBuildingSim(unittest.TestCase):
 
         # Set Zone Parameters
         Office = Zone(window_area=13.5,
-                          walls_area=15.19 - 13.5,
-                          floor_area=34.3,
-                          room_vol=106.33,
-                          total_internal_area=142.38,
-                          lighting_load=11.7,
-                          lighting_control=300,
-                          lighting_utilisation_factor=0.45,
-                          lighting_maintenance_factor=0.9,
-                          u_walls=0.2,
-                          u_windows=1.1,
-                          ach_vent=1.5,
-                          ach_infl=0.5,
-                          ventilation_efficiency=0.6,
-                          thermal_capacitance_per_floor_area=165000,
-                          t_set_heating=20,
-                          t_set_cooling=26,
-                          max_cooling_energy_per_floor_area=-12,
-                          max_heating_energy_per_floor_area=12,
-                          heating_supply_system=supply_system.HeatPumpWater,
-                          cooling_supply_system=supply_system.HeatPumpAir,
-                          heating_emission_system=emission_system.FloorHeating,
-                          cooling_emission_system=emission_system.AirConditioning,
-                          )
+                      walls_area=15.19 - 13.5,
+                      floor_area=34.3,
+                      room_vol=106.33,
+                      total_internal_area=142.38,
+                      lighting_load=11.7,
+                      lighting_control=300,
+                      lighting_utilisation_factor=0.45,
+                      lighting_maintenance_factor=0.9,
+                      u_walls=0.2,
+                      u_windows=1.1,
+                      ach_vent=1.5,
+                      ach_infl=0.5,
+                      ventilation_efficiency=0.6,
+                      thermal_capacitance_per_floor_area=165000,
+                      t_set_heating=20,
+                      t_set_cooling=26,
+                      max_cooling_energy_per_floor_area=-12,
+                      max_heating_energy_per_floor_area=12,
+                      heating_supply_system=supply_system.HeatPumpWater,
+                      cooling_supply_system=supply_system.HeatPumpAir,
+                      heating_emission_system=emission_system.FloorHeating,
+                      cooling_emission_system=emission_system.AirConditioning,
+                      )
 
         Office.solve_energy(
             internal_gains, solar_gains, t_out, t_m_prev)
@@ -985,7 +980,6 @@ class TestBuildingSim(unittest.TestCase):
 
         self.assertEqual(round(Office.energy_demand, 2), -191.55)
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 39.61)
-
 
 
 if __name__ == '__main__':

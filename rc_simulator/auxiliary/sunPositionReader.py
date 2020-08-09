@@ -5,8 +5,6 @@ SunPosition CSV file reader
 
 """
 import pandas as pd
-import numpy as np
-
 
 __author__ = "Clayton Miller"
 __copyright__ = "Copyright 2014, Architecture and Building Systems - ETH Zurich"

@@ -18,10 +18,7 @@ import os
 mainPath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, mainPath)
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib
+
 from radiation import Location
 from radiation import Window
 

@@ -3,16 +3,15 @@ Emission System Parameters for Heating and Cooling
 
 Model of different Emission systems. New Emission Systems can be introduced by adding new classes
 
-Note that this is currently in a very basic form, and has been created to allow for more complex expansion 
+Note that this is currently in a very basic form, and has been created to allow for more complex expansion
 
-Supply temperatures are taken from the CEA Toolbox 
+Supply temperatures are taken from the CEA Toolbox
 https://github.com/architecture-building-systems/CEAforArcGIS/blob/master/cea/databases/CH/Systems/emission_systems.xls
 
 TODO: Validation is still required
 TODO: Need to double check supply temperatures, waiting on reply from the CEA team
 
 """
-
 
 __author__ = "Prageeth Jayathissa, Michael Fehr"
 __copyright__ = "Copyright 2016, Architecture and Building Systems - ETH Zurich"
@@ -22,7 +21,6 @@ __version__ = "0.1"
 __maintainer__ = "Prageeth Jayathissa"
 __email__ = "p.jayathissa@gmail.com"
 __status__ = "production"
-
 
 
 class EmissionDirector:
@@ -51,14 +49,13 @@ class EmissionDirector:
 
 class EmissionSystemBase:
 
-    """ 
+    """
     The base class in which systems are built from
     """
 
     def __init__(self, energy_demand):
 
         self.energy_demand = energy_demand
-
 
     def heat_flows(self): pass
     """
@@ -88,7 +85,7 @@ class OldRadiators(EmissionSystemBase):
 
 
 class NewRadiators(EmissionSystemBase):
-    """    
+    """
     Newer building with radiators and medium supply temperature
     Heat is emitted to the air node
     """
@@ -105,6 +102,7 @@ class NewRadiators(EmissionSystemBase):
         flows.cooling_return_temperature = 21
 
         return flows
+
 
 class ChilledBeams(EmissionSystemBase):
     """
@@ -146,6 +144,7 @@ class AirConditioning(EmissionSystemBase):
 
         return flows
 
+
 class FloorHeating(EmissionSystemBase):
     """
     All HC energy goes into the surface node, supplyTemperature low
@@ -164,6 +163,7 @@ class FloorHeating(EmissionSystemBase):
         flows.cooling_return_temperature = 21
 
         return flows
+
 
 class TABS(EmissionSystemBase):
     """

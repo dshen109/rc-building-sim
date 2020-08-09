@@ -5,10 +5,7 @@ import os
 sys.path.insert(0, os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..')))
 
-import numpy as np
 from building_physics import Zone  # Importing Zone Class
-
-
 
 # Example Inputs
 t_air = 10
@@ -30,9 +27,6 @@ Office.solve_energy(internal_gains, solar_gains, t_air, t_m_prev)
 # Solve for Zone lighting
 Office.solve_lighting(ill, occupancy)
 
-
-
-
 print(Office.t_m)  # Printing Room Temperature of the medium
 
 print(Office.lighting_demand)  # Print Lighting Demand
@@ -48,10 +42,7 @@ print(Office.floor_area)
 print(Office.room_vol)
 print(Office.total_internal_area)
 
-
-
 print(Office.t_m)  # Print the new internal temperature
-
 
 # Print a boolean of whether there is a heating demand
 print(Office.has_heating_demand)

@@ -35,4 +35,3 @@ def epwreader(weather_path):
         'difhorrad_Whm2'] / result['glohorrad_Whm2']
 
     return result
-
