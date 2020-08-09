@@ -921,5 +921,71 @@ class TestBuildingSim(unittest.TestCase):
         self.assertEqual(round(Office.cop, 2), 4.62)
         self.assertEqual(Office.lighting_demand, 0)
 
+
+    def test_WaterHeatPump_mixedEmissions_infl(self):
+
+        t_out = 10
+        t_m_prev = 20
+        # Internal heat gains, in Watts
+        internal_gains = 10
+
+        # Solar heat gains after transmitting through the winow, in Watts
+        solar_gains = 2000
+
+        # Illuminance after transmitting through the window
+        ill = 44000  # Lumens
+
+        # Occupancy for the timestep [people/hour/square_meter]
+        occupancy = 0.1
+
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
+                          external_envelope_area=15.19,
+                          room_depth=7,
+                          room_width=4.9,
+                          room_height=3.1,
+                          lighting_load=11.7,
+                          lighting_control=300,
+                          lighting_utilisation_factor=0.45,
+                          lighting_maintenance_factor=0.9,
+                          u_walls=0.2,
+                          u_windows=1.1,
+                          ach_vent=1.5,
+                          ach_infl=0.5,
+                          ventilation_efficiency=0.6,
+                          thermal_capacitance_per_floor_area=165000,
+                          t_set_heating=20,
+                          t_set_cooling=26,
+                          max_cooling_energy_per_floor_area=-12,
+                          max_heating_energy_per_floor_area=12,
+                          heating_supply_system=supply_system.HeatPumpWater,
+                          cooling_supply_system=supply_system.HeatPumpAir,
+                          heating_emission_system=emission_system.FloorHeating,
+                          cooling_emission_system=emission_system.AirConditioning,
+                          )
+
+        Office.solve_energy(
+            internal_gains, solar_gains, t_out, t_m_prev)
+        Office.solve_lighting(ill, occupancy)
+
+        self.assertEqual(round(Office.t_m, 2), 20.46)
+        self.assertTrue(Office.has_heating_demand)
+        self.assertEqual(round(Office.energy_demand, 2), 20.97)
+        self.assertEqual(round(Office.heating_sys_electricity, 2), 4.54)
+        self.assertEqual(round(Office.cooling_sys_electricity, 2), 0)
+        self.assertEqual(round(Office.cop, 2), 4.62)
+        self.assertEqual(Office.lighting_demand, 0)
+
+        t_out = 24
+        t_m_prev = 25
+
+        Office.solve_energy(
+            internal_gains, solar_gains, t_out, t_m_prev)
+
+        self.assertEqual(round(Office.energy_demand, 2), -191.55)
+        self.assertEqual(round(Office.cooling_sys_electricity, 2), 39.61)
+
+
+
 if __name__ == '__main__':
     unittest.main()

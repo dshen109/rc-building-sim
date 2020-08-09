@@ -525,10 +525,15 @@ class Zone(object):
         # We call the EmissionDirector to modify these flows depending on the
         # system and the energy demand
         emDirector = emission_system.EmissionDirector()
+
         # Set the emission system to the type specified by the user
-        emDirector.set_builder(self.heating_emission_system(
-            energy_demand=energy_demand))
-        # Calculate the new flows to each node based on the heating system
+        if energy_demand > 0:
+            emDirector.set_builder(self.heating_emission_system(
+                energy_demand=energy_demand))
+        else:
+            emDirector.set_builder(self.cooling_emission_system(
+                energy_demand=energy_demand))
+        # Calculate the new flows to each node based on the heating/cooling system
         flows = emDirector.calc_flows()
 
         # Set modified flows to building object
@@ -537,8 +542,6 @@ class Zone(object):
         self.phi_m += flows.phi_m_plus
 
         # Set supply temperature to building object
-        # TODO: This currently is constant for all emission systems, to be
-        # modified in the future
         self.heating_supply_temperature = flows.heating_supply_temperature
         self.cooling_supply_temperature = flows.cooling_supply_temperature
 
