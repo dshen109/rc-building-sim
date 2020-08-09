@@ -51,7 +51,7 @@ VARIABLE DEFINITION
 INPUT PARAMETER DEFINITION 
 
     window_area: Area of the Glazed Surface in contact with the outside [m2]
-    external_envelope_area: Area of all envelope surfaces, including windows in contact with the outside
+    walls_area: Area of all envelope surfaces, including windows in contact with the outside
     room_depth=7.0 Depth of the modelled room [m]
     room_width=4.9 Width of the modelled room [m]
     room_height=3.1 Height of the modelled room [m]
@@ -99,7 +99,7 @@ class Zone(object):
 
     def __init__(self,
                  window_area=4.0,
-                 external_envelope_area=15.0,
+                 walls_area=11.0,
                  room_depth=7.0,
                  room_width=5.0,
                  room_height=3.0,
@@ -153,7 +153,7 @@ class Zone(object):
         # [kWh/K] Room Capacitance. Default based on ISO standard 12.3.1.2 for medium heavy zones
         self.c_m = thermal_capacitance_per_floor_area * self.floor_area
         # Conductance of opaque surfaces to exterior [W/K]
-        self.h_tr_em = u_walls * (external_envelope_area - window_area)
+        self.h_tr_em = u_walls * walls_area
         # Conductance to exterior through glazed surfaces [W/K], based on
         # U-wert of 1W/m2K
         self.h_tr_w = u_windows * window_area
