@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib
-from building_physics import Building  # Importing Building Class
+from building_physics import Zone  # Importing Zone Class
 import supply_system
 import emission_system
 from radiation import Location
@@ -46,9 +46,9 @@ COP = []
 Zurich = Location(epwfile_path=os.path.join(
     mainPath, 'auxiliary', 'Zurich-Kloten_2013.epw'))
 
-# Initialise an instance of the building. Empty spaces take on the default
-# parameters. See buildingPhysics.py to see the default values
-Office = Building(window_area=4.0,
+# Initialise an instance of the Zone. Empty spaces take on the default
+# parameters. See ZonePhysics.py to see the default values
+Office = Zone(window_area=4.0,
                   external_envelope_area=15.0,
                   room_depth=7.0,
                   room_width=5.0,
@@ -77,7 +77,7 @@ SouthWindow = Window(azimuth_tilt=0, alititude_tilt=90, glass_solar_transmittanc
                      glass_light_transmittance=0.8, area=4)
 
 
-# Define constants for the building
+# Define constants for the Zone
 gain_per_person = 100  # W per person
 appliance_gains = 14  # W per sqm
 max_occupancy = 3.0

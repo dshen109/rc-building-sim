@@ -1,5 +1,5 @@
 """
-Main file to calculate the building loads
+Main file to calculate the Zone loads
 EN-13970
 """
 __author__ = "Prageeth Jayathissa"
@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib
-from building_physics import Building  # Importing Building Class
+from building_physics import Zone  # Importing Zone Class
 from auxiliary import epwreader
 from auxiliary import sunPositionReader
 
@@ -45,9 +45,9 @@ gain_per_person = 100  # W per person
 appliance_gains = 14  # W per sqm
 max_occupancy = 3.0
 
-# Initialise an instance of the building. Empty brackets take on the
-# default parameters. See buildingPhysics.py to see the default values
-Office = Building()
+# Initialise an instance of the Zone. Empty brackets take on the
+# default parameters. See ZonePhysics.py to see the default values
+Office = Zone()
 
 # Read Weather Data
 weatherData = epwreader.epwreader(os.path.join(
@@ -80,7 +80,7 @@ for hour in range(8760):
 
     if str(float(hour)) in altitude.index:
         # if solar gains land in front of the south window. Assume that window
-        # is fully shaded from the back by the building
+        # is fully shaded from the back by the Zone
         if altitude[str(float(hour))] < 90.0 and azimuth[str(float(hour))] > -90 and azimuth[str(float(hour))] < 90:
             dir_solar_gains = weatherData['dirnorrad_Whm2'][hour] * np.cos(altitude[str(
                 float(hour))] * np.pi / 180.0) * np.cos(azimuth[str(float(hour))] * np.pi / 180.0)
