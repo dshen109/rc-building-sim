@@ -50,7 +50,7 @@ INPUT PARAMETER DEFINITION
     walls_area: Area of all envelope surfaces, including windows in contact with the outside
     floor_area : floor area of zone [m2]
     room_vol: volume of interior zone [m3]
-    total_internal_area: total internal surface area. walls, windows ceiling, floor [m2]
+    total_internal_area: area of all surfaces facing the room. A_t [m2]
     lighting_load: Lighting Load [W/m2]
     lighting_control: Lux threshold at which the lights turn on [Lx]
     u_walls: U value of opaque surfaces  [W/m2K]
@@ -135,7 +135,7 @@ class Zone(object):
         self.mass_area = self.floor_area * 2.5
         self.room_vol = room_vol  # [m3] Room Volume
         self.total_internal_area = total_internal_area
-        # TODO: Standard doesn't explain what A_t is. Needs to be checked
+        # A_t or At is defined as being the area of all surfaces facing the room.
         self.A_t = self.total_internal_area
 
         # Single Capacitance  5 conductance Model Parameters
