@@ -35,4 +35,3 @@ jobs:
       run: |
         python3 rc_simulator/tests/testRCmodel.py
         python3 rc_simulator/tests/testRadiation.py
-        python3 rc_simulator/tests/testExamples.py
