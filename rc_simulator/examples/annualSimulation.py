@@ -10,18 +10,18 @@ __maintainer__ = "Prageeth Jayathissa"
 __email__ = "jayathissa@arch.ethz.ch"
 __status__ = "Production"
 
-
 import sys
 import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
 
 # Set root folder one level up, just for this example
 mainPath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, mainPath)
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib
+
 from building_physics import Zone  # Importing Zone Class
 import supply_system
 import emission_system
@@ -49,28 +49,28 @@ Zurich = Location(epwfile_path=os.path.join(
 # Initialise an instance of the Zone. Empty spaces take on the default
 # parameters. See ZonePhysics.py to see the default values
 Office = Zone(window_area=4.0,
-                  walls_area=11.0,
-                  floor_area=35.0,
-                  room_vol=105,
-                  total_internal_area=142.0,
-                  lighting_load=11.7,
-                  lighting_control=300.0,
-                  lighting_utilisation_factor=0.45,
-                  lighting_maintenance_factor=0.9,
-                  u_walls=0.2,
-                  u_windows=1.1,
-                  ach_vent=1.5,
-                  ach_infl=0.5,
-                  ventilation_efficiency=0.6,
-                  thermal_capacitance_per_floor_area=165000,
-                  t_set_heating=20.0,
-                  t_set_cooling=26.0,
-                  max_cooling_energy_per_floor_area=-np.inf,
-                  max_heating_energy_per_floor_area=np.inf,
-                  heating_supply_system=supply_system.OilBoilerMed,
-                  cooling_supply_system=supply_system.HeatPumpAir,
-                  heating_emission_system=emission_system.NewRadiators,
-                  cooling_emission_system=emission_system.AirConditioning,)
+              walls_area=11.0,
+              floor_area=35.0,
+              room_vol=105,
+              total_internal_area=142.0,
+              lighting_load=11.7,
+              lighting_control=300.0,
+              lighting_utilisation_factor=0.45,
+              lighting_maintenance_factor=0.9,
+              u_walls=0.2,
+              u_windows=1.1,
+              ach_vent=1.5,
+              ach_infl=0.5,
+              ventilation_efficiency=0.6,
+              thermal_capacitance_per_floor_area=165000,
+              t_set_heating=20.0,
+              t_set_cooling=26.0,
+              max_cooling_energy_per_floor_area=-np.inf,
+              max_heating_energy_per_floor_area=np.inf,
+              heating_supply_system=supply_system.OilBoilerMed,
+              cooling_supply_system=supply_system.HeatPumpAir,
+              heating_emission_system=emission_system.NewRadiators,
+              cooling_emission_system=emission_system.AirConditioning,)
 
 # Define Windows
 SouthWindow = Window(azimuth_tilt=0, alititude_tilt=90, glass_solar_transmittance=0.7,
@@ -78,7 +78,7 @@ SouthWindow = Window(azimuth_tilt=0, alititude_tilt=90, glass_solar_transmittanc
 
 # A catch statement to prevent future coding bugs when modifying window area
 if SouthWindow.area != Office.window_area:
-  raise ValueError('Window area defined in radiation file doesnt match area defined in zone')
+    raise ValueError('Window area defined in radiation file doesnt match area defined in zone')
 
 
 # Define constants for the Zone
@@ -120,7 +120,9 @@ for hour in range(8760):
                                  horizontal_diffuse_illuminance=Zurich.weather_data['difhorillum_lux'][hour])
 
     Office.solve_energy(internal_gains=internal_gains,
-                                 solar_gains=SouthWindow.solar_gains, t_out=t_out, t_m_prev=t_m_prev)
+                        solar_gains=SouthWindow.solar_gains,
+                        t_out=t_out,
+                        t_m_prev=t_m_prev)
 
     Office.solve_lighting(
         illuminance=SouthWindow.transmitted_illuminance, occupancy=occupancy)

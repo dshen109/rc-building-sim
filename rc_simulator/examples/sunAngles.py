@@ -1,21 +1,16 @@
-
 import sys
 import os
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
 
 # Set root folder one level up, just for this example
 mainPath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, mainPath)
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib
-
 from radiation import Location
 
 matplotlib.style.use('ggplot')
-
-
 
 Zurich = Location(epwfile_path=os.path.join(
     mainPath, 'auxiliary', 'Zurich-Kloten_2013.epw'))
@@ -52,4 +47,3 @@ plt.plot(Sunnyhoy, Azimuth, hoy_check, Azimuth_check,
 plt.legend(['Azimuth', 'Azimuth Check', 'Altitude', 'Altitude_check'])
 
 plt.show()
-

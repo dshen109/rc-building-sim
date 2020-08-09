@@ -1,17 +1,15 @@
 import sys
 import os
-
+import unittest
+import pandas as pd
+import math
 
 # Set root folder one level up, just for this example
 mainPath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, mainPath)
 
-import unittest
-import numpy as np
-import pandas as pd
 from radiation import Location
 from radiation import Window
-import math
 
 
 class TestRadiation(unittest.TestCase):

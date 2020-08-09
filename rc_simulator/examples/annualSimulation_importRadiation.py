@@ -14,18 +14,18 @@ __status__ = "Production"
 
 import sys
 import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
 
 # Set root folder one level up, just for this example
 mainPath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, mainPath)
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib
+
 from building_physics import Zone  # Importing Zone Class
 from auxiliary import epwreader
-from auxiliary import sunPositionReader
 
 matplotlib.style.use('ggplot')
 

@@ -3,10 +3,9 @@ Supply System Parameters for Heating and Cooling
 
 Model of different Supply systems. New Supply Systems can be introduced by adding new classes
 
-TODO: Have a look at CEA calculation methodology 
+TODO: Have a look at CEA calculation methodology
 https://github.com/architecture-building-systems/CEAforArcGIS/blob/master/cea/technologies/heatpumps.py
 """
-
 
 __author__ = "Prageeth Jayathissa, Michael Fehr"
 __copyright__ = "Copyright 2016, Architecture and Building Systems - ETH Zurich"
@@ -16,7 +15,6 @@ __version__ = "0.1"
 __maintainer__ = "Prageeth Jayathissa"
 __email__ = "jayathissa@arch.ethz.ch"
 __status__ = "production"
-
 
 
 # This is one layer of abstraction too many, however it is kept for future explansion of the supply system
@@ -46,10 +44,16 @@ class SupplyDirector:
 class SupplySystemBase:
 
     """
-     The base class in which Supply systems are built from 
+     The base class in which Supply systems are built from
     """
 
-    def __init__(self, load, t_out, heating_supply_temperature, cooling_supply_temperature, has_heating_demand, has_cooling_demand):
+    def __init__(self,
+                 load,
+                 t_out,
+                 heating_supply_temperature,
+                 cooling_supply_temperature,
+                 has_heating_demand,
+                 has_cooling_demand):
         self.load = load  # Energy Demand of the building at that time step
         self.t_out = t_out  # Outdoor Air Temperature
         # Temperature required by the emission system
@@ -155,7 +159,6 @@ class HeatPumpWater(SupplySystemBase):
 
         # TODO: Validate this methodology
     """
-
 
     def calc_loads(self):
         system = SupplyOut()
