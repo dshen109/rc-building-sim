@@ -59,7 +59,7 @@ class TestBuildingSim(unittest.TestCase):
             internal_gains, solar_gains, t_out, t_m_prev)
         Office.solve_building_lighting(ill, occupancy)
 
-        self.assertEqual(round(Office.t_m, 2), 22.33)
+        self.assertEqual(round(Office.t_m, 2), 122.33)
         self.assertEqual(Office.energy_demand, 0)
         self.assertEqual(round(Office.heating_sys_electricity, 2), 0)
         self.assertEqual(round(Office.cooling_sys_electricity, 2), 0)
