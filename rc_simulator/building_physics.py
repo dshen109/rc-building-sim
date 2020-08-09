@@ -52,6 +52,9 @@ INPUT PARAMETER DEFINITION
 
     window_area: Area of the Glazed Surface in contact with the outside [m2]
     walls_area: Area of all envelope surfaces, including windows in contact with the outside
+    floor_area : floor area of zone [m2]
+    room_vol: volume of interior zone [m3]
+    total_internal_area: total internal surface area. walls, windows ceiling, floor [m2]
     room_depth=7.0 Depth of the modelled room [m]
     room_width=4.9 Width of the modelled room [m]
     room_height=3.1 Height of the modelled room [m]
