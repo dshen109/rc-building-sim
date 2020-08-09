@@ -10,8 +10,8 @@ HOW TO USE
 
 ::
 
-    from buildingPhysics import Building  #Importing Zone Class
-    office = Building()  #Set an instance of the class
+    from buildingPhysics import Zone  #Importing Zone Class
+    office = Zone()  #Set an instance of the class
     office.solve_energy(internal_gains, solar_gains, t_out, t_m_prev) #Solve for Heating
     office.solve_lighting(illumination, occupancy) #Solve for Lighting
 
@@ -52,9 +52,9 @@ INPUT PARAMETER DEFINITION
 
     window_area: Area of the Glazed Surface in contact with the outside [m2]
     walls_area: Area of all envelope surfaces, including windows in contact with the outside
-    room_depth=7.0 Depth of the modelled room [m]
-    room_width=4.9 Width of the modelled room [m]
-    room_height=3.1 Height of the modelled room [m]
+    floor_area : floor area of zone [m2]
+    room_vol: volume of interior zone [m3]
+    total_internal_area: total internal surface area. walls, windows ceiling, floor [m2]
     lighting_load: Lighting Load [W/m2] 
     lighting_control: Lux threshold at which the lights turn on [Lx]
     u_walls: U value of opaque surfaces  [W/m2K]
@@ -100,9 +100,9 @@ class Zone(object):
     def __init__(self,
                  window_area=4.0,
                  walls_area=11.0,
-                 room_depth=7.0,
-                 room_width=5.0,
-                 room_height=3.0,
+                 floor_area=35.0,
+                 room_vol=105,
+                 total_internal_area=142.0,
                  lighting_load=11.7,
                  lighting_control=300.0,
                  lighting_utilisation_factor=0.45,
@@ -125,9 +125,6 @@ class Zone(object):
 
         # Zone Dimensions
         self.window_area = window_area  # [m2] Window Area
-        self.room_depth = room_depth  # [m] Room Depth
-        self.room_width = room_width  # [m] Room Width
-        self.room_height = room_height  # [m] Room Height
 
         # Fenestration and Lighting Properties
         self.lighting_load = lighting_load  # [kW/m2] lighting load
@@ -139,13 +136,11 @@ class Zone(object):
         self.lighting_maintenance_factor = lighting_maintenance_factor
 
         # Calculated Properties
-        self.floor_area = room_depth * room_width  # [m2] Floor Area
+        self.floor_area = floor_area  # [m2] Floor Area
         # [m2] Effective Mass Area assuming a medium weight zone #12.3.1.2
         self.mass_area = self.floor_area * 2.5
-        self.room_vol = room_width * room_depth * \
-            room_height  # [m3] Room Volume
-        self.total_internal_area = self.floor_area * 2 + \
-            room_width * room_height * 2 + room_depth * room_height * 2
+        self.room_vol = room_vol  # [m3] Room Volume
+        self.total_internal_area = total_internal_area
         # TODO: Standard doesn't explain what A_t is. Needs to be checked
         self.A_t = self.total_internal_area
 

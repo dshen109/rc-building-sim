@@ -50,9 +50,9 @@ Zurich = Location(epwfile_path=os.path.join(
 # parameters. See ZonePhysics.py to see the default values
 Office = Zone(window_area=4.0,
                   walls_area=11.0,
-                  room_depth=7.0,
-                  room_width=5.0,
-                  room_height=3.0,
+                  floor_area=35.0,
+                  room_vol=105,
+                  total_internal_area=142.0,
                   lighting_load=11.7,
                   lighting_control=300.0,
                   lighting_utilisation_factor=0.45,

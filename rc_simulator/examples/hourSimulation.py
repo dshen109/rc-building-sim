@@ -44,6 +44,10 @@ Office.theta_int_h_set = 20.0
 # Solve again for the new set point temperature
 Office.solve_energy(internal_gains, solar_gains, t_air, t_m_prev)
 
+print(Office.floor_area)
+print(Office.room_vol)
+print(Office.total_internal_area)
+
 
 
 print(Office.t_m)  # Print the new internal temperature
