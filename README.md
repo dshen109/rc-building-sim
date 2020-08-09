@@ -1,5 +1,7 @@
 # 5R1C Building Simulation Model
 
+![Python application](https://github.com/architecture-building-systems/RC_BuildingSimulator/workflows/Python%20application/badge.svg)
+
 ## 10min Guide to your first simulation
 
 See the [10min guide in the wiki page](https://github.com/architecture-building-systems/RC_BuildingSimulator/wiki/10min-guide-to-your-first-simulation)
