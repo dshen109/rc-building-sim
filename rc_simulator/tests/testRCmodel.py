@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.abspath(
 
 import unittest
 import numpy as np
-from building_physics import Building  # Importing Building Class
+from building_physics import Zone  # Importing Zone Class
 import supply_system
 import emission_system
 
@@ -29,8 +29,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -80,8 +80,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -134,8 +134,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -186,8 +186,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -239,8 +239,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -292,8 +292,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -346,8 +346,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -397,8 +397,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -451,8 +451,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -503,8 +503,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -556,8 +556,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -609,8 +609,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -664,8 +664,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -719,8 +719,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -774,8 +774,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -829,8 +829,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,
@@ -883,8 +883,8 @@ class TestBuildingSim(unittest.TestCase):
         # Occupancy for the timestep [people/hour/square_meter]
         occupancy = 0.1
 
-        # Set Building Parameters
-        Office = Building(window_area=13.5,
+        # Set Zone Parameters
+        Office = Zone(window_area=13.5,
                           external_envelope_area=15.19,
                           room_depth=7,
                           room_width=4.9,

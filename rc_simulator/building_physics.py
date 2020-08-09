@@ -94,8 +94,8 @@ __status__ = "production"
 
 
 
-class Building(object):
-    '''Sets the parameters of the building. '''
+class Zone(object):
+    '''Sets the parameters of the zone. '''
 
     def __init__(self,
                  window_area=4.0,
@@ -123,7 +123,7 @@ class Building(object):
                  cooling_emission_system=emission_system.AirConditioning,
                  ):
 
-        # Building Dimensions
+        # Zone Dimensions
         self.window_area = window_area  # [m2] Window Area
         self.room_depth = room_depth  # [m] Room Depth
         self.room_width = room_width  # [m] Room Width
@@ -140,7 +140,7 @@ class Building(object):
 
         # Calculated Properties
         self.floor_area = room_depth * room_width  # [m2] Floor Area
-        # [m2] Effective Mass Area assuming a medium weight building #12.3.1.2
+        # [m2] Effective Mass Area assuming a medium weight zone #12.3.1.2
         self.mass_area = self.floor_area * 2.5
         self.room_vol = room_width * room_depth * \
             room_height  # [m3] Room Volume
@@ -150,7 +150,7 @@ class Building(object):
         self.A_t = self.total_internal_area
 
         # Single Capacitance  5 conductance Model Parameters
-        # [kWh/K] Room Capacitance. Default based on ISO standard 12.3.1.2 for medium heavy buildings
+        # [kWh/K] Room Capacitance. Default based on ISO standard 12.3.1.2 for medium heavy zones
         self.c_m = thermal_capacitance_per_floor_area * self.floor_area
         # Conductance of opaque surfaces to exterior [W/K]
         self.h_tr_em = u_walls * (external_envelope_area - window_area)
@@ -166,9 +166,9 @@ class Building(object):
         self.h_ve_adj = 1200 * b_ek * self.room_vol * \
             (ach_tot / 3600)  # Conductance through ventilation [W/M]
         # transmittance from the internal air to the thermal mass of the
-        # building
+        # zone
         self.h_tr_ms = 9.1 * self.mass_area
-        # Conductance from the conditioned air to interior building surface
+        # Conductance from the conditioned air to interior zone surface
         self.h_tr_is = self.total_internal_area * 3.45
 
         # Thermal set points
@@ -183,7 +183,7 @@ class Building(object):
         self.max_heating_energy = max_heating_energy_per_floor_area * \
             self.floor_area  # max heating load (W/m2)
 
-        # Building System Properties
+        # Zone System Properties
         self.heating_supply_system = heating_supply_system
         self.cooling_supply_system = cooling_supply_system
         self.heating_emission_system = heating_emission_system
