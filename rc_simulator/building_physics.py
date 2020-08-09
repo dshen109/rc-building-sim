@@ -10,8 +10,8 @@ HOW TO USE
 
 ::
 
-    from buildingPhysics import Building  #Importing Zone Class
-    office = Building()  #Set an instance of the class
+    from buildingPhysics import Zone  #Importing Zone Class
+    office = Zone()  #Set an instance of the class
     office.solve_energy(internal_gains, solar_gains, t_out, t_m_prev) #Solve for Heating
     office.solve_lighting(illumination, occupancy) #Solve for Lighting
 
@@ -55,9 +55,6 @@ INPUT PARAMETER DEFINITION
     floor_area : floor area of zone [m2]
     room_vol: volume of interior zone [m3]
     total_internal_area: total internal surface area. walls, windows ceiling, floor [m2]
-    room_depth=7.0 Depth of the modelled room [m]
-    room_width=4.9 Width of the modelled room [m]
-    room_height=3.1 Height of the modelled room [m]
     lighting_load: Lighting Load [W/m2] 
     lighting_control: Lux threshold at which the lights turn on [Lx]
     u_walls: U value of opaque surfaces  [W/m2K]
