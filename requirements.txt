@@ -2,3 +2,4 @@ numpy
 setuptools
 cython
 matplotlib
+pandas
