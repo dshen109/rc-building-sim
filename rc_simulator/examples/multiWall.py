@@ -27,6 +27,14 @@ solar_gains = 200
 ill = 4400  # Illuminance after transmitting through the window [Lumens]
 occupancy = 0.1  # Occupancy for the timestep [people/hour/square_meter]
 
+"""
+Note, if you don't have the same outside temperature of the varying walls,
+such as one wall connecting to a basement, then this can be approximated 
+by modifying the u-value of that particular wall proportionately to the 
+percentage damping of the temperature that surface is exposed to relative
+to the outer temperature
+"""
+
 
 #Define the areas of the outer surfaces
 roof_area = 10 #m2
