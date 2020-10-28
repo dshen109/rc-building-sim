@@ -130,6 +130,15 @@ class Building(object):
         self.room_width = room_width  # [m] Room Width
         self.room_height = room_height  # [m] Room Height
 
+
+        # ventilation properties
+        self.ach_vent_base = ach_vent
+        self.ach_vent = ach_vent
+        self.ach_vent_high = 3
+        self.ach_infl = ach_infl
+        self.ventilation_efficiency = ventilation_efficiency
+
+
         # Fenestration and Lighting Properties
         self.lighting_load = lighting_load  # [kW/m2] lighting load
         self.lighting_control = lighting_control  # [lux] Lighting set point
@@ -159,15 +168,8 @@ class Building(object):
         # U-wert of 1W/m2K
         self.h_tr_w = u_windows * window_area
 
-        # Determine the ventilation conductance
-        ach_tot = ach_infl + ach_vent  # Total Air Changes Per Hour
-        # temperature adjustment factor taking ventilation and infiltration
-        # [ISO: E -27]
-        b_ek = (1 - (ach_vent / (ach_tot)) * ventilation_efficiency)
-        self.h_ve_adj = 1200 * b_ek * self.room_vol * \
-            (ach_tot / 3600)  # Conductance through ventilation [W/M]
-        # transmittance from the internal air to the thermal mass of the
-        # building
+        #### hier WAR ES###
+
         self.h_tr_ms = 9.1 * self.mass_area
         # Conductance from the conditioned air to interior building surface
         self.h_tr_is = self.total_internal_area * 3.45
@@ -225,6 +227,19 @@ class Building(object):
         # (C.12) in [C.3 ISO 13790]
         """
         return 0.3 * self.t_air + 0.7 * self.t_s
+
+    @property
+    def h_ve_adj(self):
+
+        # Determine the ventilation conductance
+        ach_tot = self.ach_infl + self.ach_vent  # Total Air Changes Per Hour
+        # temperature adjustment factor taking ventilation and infiltration
+        # [ISO: E -27]
+        b_ek = (1 - (self.ach_vent / (ach_tot)) * self.ventilation_efficiency)
+        return 1200 * b_ek * self.room_vol * (ach_tot / 3600)  # Conductance through ventilation [W/M]
+        # transmittance from the internal air to the thermal mass of the
+        # building
+
     
     def solve_building_lighting(self, illuminance, occupancy):
         """
@@ -405,6 +420,9 @@ class Building(object):
         # set energy demand to 0 and see if temperatures are within the comfort
         # range
         energy_demand = 0
+
+        self.ach_vent = self.ach_vent_base
+
         # Solve for the internal temperature t_Air
         self.calc_temperatures_crank_nicolson(
             energy_demand, internal_gains, solar_gains, t_out, t_m_prev)
@@ -414,9 +432,29 @@ class Building(object):
         if self.t_air < self.t_set_heating:
             self.has_heating_demand = True
             self.has_cooling_demand = False
+
+
         elif self.t_air > self.t_set_cooling:
-            self.has_cooling_demand = True
-            self.has_heating_demand = False
+
+            print("compare")
+            print(self.t_air)
+            self.ach_vent = self.ach_vent_high
+            # Solve for the internal temperature t_Air
+            self.calc_temperatures_crank_nicolson(
+                energy_demand, internal_gains, solar_gains, t_out, t_m_prev)
+
+            print(self.t_air)
+            print("")
+
+            if self.t_air > self.t_set_cooling:
+                self.has_cooling_demand = True
+                self.has_heating_demand = False
+
+            else:
+                self.has_cooling_demand = False
+                self.has_heating_demand = False
+
+
         else:
             self.has_heating_demand = False
             self.has_cooling_demand = False
