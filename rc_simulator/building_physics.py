@@ -110,6 +110,7 @@ class Building(object):
                  u_walls=0.2,
                  u_windows=1.1,
                  ach_vent=1.5,
+                 ach_vent_high=3,
                  ach_infl=0.5,
                  ventilation_efficiency=0.6,
                  thermal_capacitance_per_floor_area=165000,
@@ -134,7 +135,7 @@ class Building(object):
         # ventilation properties
         self.ach_vent_base = ach_vent
         self.ach_vent = ach_vent
-        self.ach_vent_high = 3
+        self.ach_vent_high = ach_vent_high
         self.ach_infl = ach_infl
         self.ventilation_efficiency = ventilation_efficiency
 
@@ -435,25 +436,24 @@ class Building(object):
 
 
         elif self.t_air > self.t_set_cooling:
-
             print("compare")
             print(self.t_air)
-            self.ach_vent = self.ach_vent_high
-            # Solve for the internal temperature t_Air
-            self.calc_temperatures_crank_nicolson(
-                energy_demand, internal_gains, solar_gains, t_out, t_m_prev)
+            if t_out < self.t_air:
+                self.ach_vent = self.ach_vent_high
+                # Solve for the internal temperature t_Air
+                self.calc_temperatures_crank_nicolson(energy_demand, internal_gains, solar_gains, t_out, t_m_prev)
+                print(self.t_air)
+                print("")
+                if self.t_air > self.t_set_cooling:
+                    self.has_cooling_demand = True
+                    self.has_heating_demand = False
 
-            print(self.t_air)
-            print("")
-
-            if self.t_air > self.t_set_cooling:
+                else:
+                    self.has_cooling_demand = False
+                    self.has_heating_demand = False
+            else:
                 self.has_cooling_demand = True
                 self.has_heating_demand = False
-
-            else:
-                self.has_cooling_demand = False
-                self.has_heating_demand = False
-
 
         else:
             self.has_heating_demand = False
