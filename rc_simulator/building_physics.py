@@ -436,14 +436,12 @@ class Building(object):
 
 
         elif self.t_air > self.t_set_cooling:
-            print("compare")
-            print(self.t_air)
+
             if t_out < self.t_air:
                 self.ach_vent = self.ach_vent_high
                 # Solve for the internal temperature t_Air
                 self.calc_temperatures_crank_nicolson(energy_demand, internal_gains, solar_gains, t_out, t_m_prev)
-                print(self.t_air)
-                print("")
+
                 if self.t_air > self.t_set_cooling:
                     self.has_cooling_demand = True
                     self.has_heating_demand = False
