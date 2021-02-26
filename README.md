@@ -10,6 +10,12 @@ See the [10min guide in the wiki page](https://github.com/architecture-building-
 
 Can be found in [the wiki](https://github.com/architecture-building-systems/RC_BuildingSimulator/wiki)
 
+## Academic Citations
+
+If citing this simulator in research, please use the following reference
+
+Jayathissa, Prageeth, et al. "Optimising building net energy demand with dynamic BIPV shading." Applied Energy 202 (2017): 726-735.
+
 ## References
 
 Madsen, Henrik, and Jan Holst. "Estimation of continuous-time models for the heat dynamics of a building." Energy and Buildings 22.1 (1995): 67-79.
