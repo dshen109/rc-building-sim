@@ -75,8 +75,8 @@ INPUT PARAMETER DEFINITION
 
 """
 
-import supply_system
-import emission_system
+from . import supply_system
+from . import emission_system
 
 __authors__ = "Prageeth Jayathissa"
 __copyright__ = "Copyright 2016, Architecture and Building Systems - ETH Zurich"

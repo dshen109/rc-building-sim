@@ -117,7 +117,8 @@ for hour in range(8760):
     SouthWindow.calc_illuminance(sun_altitude=Altitude, sun_azimuth=Azimuth,
                                  normal_direct_illuminance=Zurich.weather_data[
                                      'dirnorillum_lux'][hour],
-                                 horizontal_diffuse_illuminance=Zurich.weather_data['difhorillum_lux'][hour])
+                                 horizontal_diffuse_illuminance=
+                                    Zurich.weather_data['difhorillum_lux'][hour])
 
     Office.solve_energy(internal_gains=internal_gains,
                         solar_gains=SouthWindow.solar_gains,
