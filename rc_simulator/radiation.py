@@ -104,10 +104,10 @@ class Location(object):
 class Window(object):
     """docstring for Window"""
 
-    def __init__(self, azimuth_tilt, alititude_tilt=90, glass_solar_transmittance=0.7,
+    def __init__(self, azimuth_tilt, altitude_tilt=90, glass_solar_transmittance=0.7,
                  glass_light_transmittance=0.8, area=1):
 
-        self.alititude_tilt_rad = math.radians(alititude_tilt)
+        self.altitude_tilt_rad = math.radians(altitude_tilt)
         self.azimuth_tilt_rad = math.radians(azimuth_tilt)
         self.glass_solar_transmittance = glass_solar_transmittance
         self.glass_light_transmittance = glass_light_transmittance
@@ -179,9 +179,9 @@ class Window(object):
         ref:Quaschning, Volker, and Rolf Hanitsch. "Shade calculations in photovoltaic systems."
         ISES Solar World Conference, Harare. 1995.
         """
-        direct_factor = math.cos(sun_altitude_rad) * math.sin(self.alititude_tilt_rad) * \
+        direct_factor = math.cos(sun_altitude_rad) * math.sin(self.altitude_tilt_rad) * \
             math.cos(sun_azimuth_rad - self.azimuth_tilt_rad) + \
-            math.sin(sun_altitude_rad) * math.cos(self.alititude_tilt_rad)
+            math.sin(sun_altitude_rad) * math.cos(self.altitude_tilt_rad)
 
         # If the sun is in front of the window surface
         if(math.degrees(math.acos(direct_factor)) > 90):
@@ -195,7 +195,7 @@ class Window(object):
     def calc_diffuse_solar_factor(self):
         """Calculates the proportion of diffuse radiation"""
         # Proportion of incident light on the window surface
-        return (1 + math.cos(self.alititude_tilt_rad)) / 2
+        return (1 + math.cos(self.altitude_tilt_rad)) / 2
 
 
 if __name__ == '__main__':

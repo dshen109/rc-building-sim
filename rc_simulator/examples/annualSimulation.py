@@ -73,7 +73,7 @@ Office = Zone(window_area=4.0,
               cooling_emission_system=emission_system.AirConditioning,)
 
 # Define Windows
-SouthWindow = Window(azimuth_tilt=0, alititude_tilt=90, glass_solar_transmittance=0.7,
+SouthWindow = Window(azimuth_tilt=0, altitude_tilt=90, glass_solar_transmittance=0.7,
                      glass_light_transmittance=0.8, area=4)
 
 # A catch statement to prevent future coding bugs when modifying window area
