@@ -62,11 +62,13 @@ class SupplySystemBase:
         self.has_heating_demand = has_heating_demand
         self.has_cooling_demand = has_cooling_demand
 
-    def calc_loads(self): pass
-    """
-    Caculates the electricty / fossil fuel consumption of the set supply system
-    If the system also generates electricity, then this is stored as electricity_out
-    """
+    def calc_loads(self):
+        """
+        Calculates the electricty / fossil fuel consumption of the set supply
+        system If the system also generates electricity, then this is stored as
+        electricity_out
+        """
+        pass
 
 
 class OilBoilerOld(SupplySystemBase):
