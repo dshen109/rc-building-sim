@@ -104,7 +104,8 @@ class Location(object):
 class Window(object):
     """docstring for Window"""
 
-    def __init__(self, azimuth_tilt, altitude_tilt=90, glass_solar_transmittance=0.7,
+    def __init__(self, azimuth_tilt, altitude_tilt=90,
+                 glass_solar_transmittance=0.7,
                  glass_light_transmittance=0.8, area=1):
 
         self.altitude_tilt_rad = math.radians(altitude_tilt)
@@ -113,7 +114,9 @@ class Window(object):
         self.glass_light_transmittance = glass_light_transmittance
         self.area = area
 
-    def calc_solar_gains(self, sun_altitude, sun_azimuth, normal_direct_radiation, horizontal_diffuse_radiation):
+    def calc_solar_gains(self, sun_altitude, sun_azimuth,
+                         normal_direct_radiation,
+                         horizontal_diffuse_radiation):
         """
         Calculates the Solar Gains in the building zone through the set Window
 
@@ -130,7 +133,7 @@ class Window(object):
         :rtype: float
         """
 
-        direct_factor = self.calc_direct_solar_factor(sun_altitude, sun_azimuth,)
+        direct_factor = self.calc_direct_solar_factor(sun_altitude, sun_azimuth)
         diffuse_factor = self.calc_diffuse_solar_factor()
 
         direct_solar = direct_factor * normal_direct_radiation
