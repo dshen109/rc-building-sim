@@ -487,21 +487,23 @@ class Zone(object):
 
     def calc_heat_flow(self, t_out, internal_gains, solar_gains, energy_demand):
         """
-        Calculates the heat flow from the solar gains, heating/cooling system, and internal gains into the building
+        Calculates the heat flow from the solar gains, heating/cooling system,
+        and internal gains into the building
 
-        The input of the building is split into the air node, surface node, and thermal mass node based on
-        on the following equations
+        The input of the building is split into the air node, surface node, and
+        thermal mass node based on on the following equations
 
         #C.1 - C.3 in [C.3 ISO 13790]
 
-        Note that this equation has diverged slightly from the standard
-        as the heating/cooling node can enter any node depending on the
-        emission system selected
+        Note that this equation has diverged slightly from the standard as the
+        heating/cooling node can enter any node depending on the emission
+        system selected
 
         """
 
-        # Calculates the heat flows to various points of the building based on the breakdown in section C.2, formulas C.1-C.3
-        # Heat flow to the air node
+        # Calculates the heat flows to various points of the building based on
+        # the breakdown in section C.2, formulas C.1-C.3 Heat flow to the air
+        # node
         self.phi_ia = 0.5 * internal_gains
         # Heat flow to the surface node
         self.phi_st = (1 - (self.mass_area / self.A_t) -
