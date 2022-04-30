@@ -3,7 +3,6 @@
 Tool to Evaluate Radiation incident on a surface of a set angle
 
 """
-
 import pandas as pd
 import math
 import datetime
